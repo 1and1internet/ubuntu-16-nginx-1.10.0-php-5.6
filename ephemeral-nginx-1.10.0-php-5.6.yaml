@@ -53,7 +53,7 @@ objects:
       spec:
         containers:
         - env:
-          image: 1and1internet/ubuntu-16-nginx-1.10.0-php-5.6:unstable
+          image: 1and1internet/ubuntu-16-nginx-1.10.0-php-5.6:latest
           imagePullPolicy: Always
           livenessProbe:
             initialDelaySeconds: 30
