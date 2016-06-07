@@ -53,7 +53,7 @@ objects:
       spec:
         containers:
         - env:
-          image: 1and1internet/ubuntu-16-nginx-1.10.0-php-5.6
+          image: 1and1internet/ubuntu-16-nginx-1.10.0-php-5.6:latest
           imagePullPolicy: Always
           name: ${APP_SERVICE_NAME}
     triggers:
