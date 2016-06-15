@@ -1,1 +1,1 @@
-# docker-ubuntu-16-nginx-1.10.0-php-5.6
+# ubuntu-16-nginx-php-5.6
