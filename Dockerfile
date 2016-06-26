@@ -26,5 +26,5 @@ RUN \
     mkdir --mode 777 /var/run/php && \
     chmod 755 /hooks /var/www && \
     chmod -R 777 /var/www/html /var/log && \
-    chmod 66 /etc/nginx/sites-enabled/site.conf
+    chmod 666 /etc/nginx/sites-enabled/site.conf
 EXPOSE 8080
