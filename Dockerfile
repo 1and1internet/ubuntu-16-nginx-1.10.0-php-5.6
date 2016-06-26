@@ -25,6 +25,6 @@ RUN \
     sed -i -e 's/^listen.group = www-data$/;listen.group = www-data/g' /etc/php/5.6/fpm/pool.d/www.conf && \
     mkdir --mode 777 /var/run/php && \
     chmod 755 /hooks /var/www && \
-    chmod -R 777 /var/www/html /var/log
-
+    chmod -R 777 /var/www/html /var/log && \
+    chmod 66 /etc/nginx/sites-enabled/site.conf
 EXPOSE 8080
