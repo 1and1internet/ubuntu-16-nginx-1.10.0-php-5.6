@@ -24,7 +24,7 @@ RUN \
     sed -i -e 's/^listen.owner = www-data$/;listen.owner = www-data/g' /etc/php/5.6/fpm/pool.d/www.conf && \
     sed -i -e 's/^listen.group = www-data$/;listen.group = www-data/g' /etc/php/5.6/fpm/pool.d/www.conf && \
     sed -i -e 's/fastcgi_param  SERVER_PORT        $server_port;/fastcgi_param  SERVER_PORT        $http_x_forwarded_port;/g' /etc/nginx/fastcgi.conf && \
-    sed -i -e 's/fastcgi_param  SERVER_PORT        $server_port;/fastcgi_param  SERVER_PORT        $http_x_forwarded_port;/g' /etc/nginx/fastcgi_param && \
+    sed -i -e 's/fastcgi_param  SERVER_PORT        $server_port;/fastcgi_param  SERVER_PORT        $http_x_forwarded_port;/g' /etc/nginx/fastcgi_params && \
     mkdir --mode 777 /var/run/php && \
     chmod 755 /hooks /var/www && \
     chmod -R 777 /var/www/html /var/log && \
