@@ -23,6 +23,8 @@ RUN \
     sed -i -e 's/^group = www-data$/;group = www-data/g' /etc/php/5.6/fpm/pool.d/www.conf && \
     sed -i -e 's/^listen.owner = www-data$/;listen.owner = www-data/g' /etc/php/5.6/fpm/pool.d/www.conf && \
     sed -i -e 's/^listen.group = www-data$/;listen.group = www-data/g' /etc/php/5.6/fpm/pool.d/www.conf && \
+    sed -i -e 's/max_execution_time = 30/max_execution_time = 360/g' /etc/php/5.6/fpm/php.ini && \
+    sed -i -e 's/upload_max_filesize = 2M/upload_max_filesize = 50M/g' /etc/php/5.6/fpm/php.ini && \
     sed -i -e 's/fastcgi_param  SERVER_PORT        $server_port;/fastcgi_param  SERVER_PORT        $http_x_forwarded_port;/g' /etc/nginx/fastcgi.conf && \
     sed -i -e 's/fastcgi_param  SERVER_PORT        $server_port;/fastcgi_param  SERVER_PORT        $http_x_forwarded_port;/g' /etc/nginx/fastcgi_params && \
     mkdir --mode 777 /var/run/php && \
