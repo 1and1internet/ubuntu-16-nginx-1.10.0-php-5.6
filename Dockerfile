@@ -1,4 +1,4 @@
-FROM 1and1internet/ubuntu-16-nginx:latest
+FROM 1and1internet/ubuntu-16-nginx
 MAINTAINER james.eckersall@1and1.co.uk
 ARG DEBIAN_FRONTEND=noninteractive
 COPY files /
