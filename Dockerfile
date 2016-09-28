@@ -29,6 +29,13 @@ RUN \
     sed -i -e 's/fastcgi_param  SERVER_PORT        $server_port;/fastcgi_param  SERVER_PORT        $http_x_forwarded_port;/g' /etc/nginx/fastcgi.conf && \
     sed -i -e 's/fastcgi_param  SERVER_PORT        $server_port;/fastcgi_param  SERVER_PORT        $http_x_forwarded_port;/g' /etc/nginx/fastcgi_params && \
     sed -i -e '/sendfile on;/a\        fastcgi_read_timeout 300\;' /etc/nginx/nginx.conf && \
+
+    mkdir -p /usr/src/tmp/ioncube && \
+    curl -fSL "http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64_5.1.2.tar.gz" -o /usr/src/tmp/ioncube_loaders_lin_x86-64_5.1.2.tar.gz && \
+    tar xfz /usr/src/tmp/ioncube_loaders_lin_x86-64_5.1.2.tar.gz -C /usr/src/tmp/ioncube && \
+    cp /usr/src/tmp/ioncube/ioncube/ioncube_loader_lin_5.6.so /usr/lib/php/20131226/ && \
+    rm -rf /usr/src/tmp/ioncube && \
+
     mkdir --mode 777 /var/run/php && \
     chmod 755 /hooks /var/www && \
     chmod -R 777 /var/www/html /var/log && \
