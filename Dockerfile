@@ -1,5 +1,5 @@
 FROM 1and1internet/ubuntu-16-nginx
-MAINTAINER james.eckersall@1and1.co.uk
+MAINTAINER brian.wojtczak@1and1.co.uk
 ARG DEBIAN_FRONTEND=noninteractive
 COPY files /
 RUN \
@@ -7,7 +7,9 @@ RUN \
     apt-get install -y python-software-properties software-properties-common && \
     LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php && \
     apt-get update && \
-    apt-get install -y php5.6-cli php5.6-fpm php5.6-bcmath php5.6-bz2 php5.6-dba php5.6-imap php5.6-intl php5.6-mcrypt php5.6-soap php5.6-tidy php5.6-common php5.6-curl php5.6-gd php5.6-mysql php5.6-sqlite php5.6-xml php5.6-zip php5.6-gettext php5.6-mbstring && \
+    apt-get install -y imagemagick graphicsmagick && \
+    apt-get install -y php5.6-bcmath php5.6-bz2 php5.6-cli php5.6-common php5.6-curl php5.6-dba php5.6-fpm php5.6-gd php5.6-gmp php5.6-imap php5.6-intl php5.6-ldap php5.6-mbstring php5.6-mcrypt php5.6-mysql php5.6-odbc php5.6-pgsql php5.6-recode php5.6-snmp php5.6-soap php5.6-sqlite php5.6-tidy php5.6-xml php5.6-xmlrpc php5.6-xsl php5.6-zip && \
+    apt-get install -y php-gnupg php-imagick php-mongodb php-streams php-fxsl && \
     mkdir /tmp/composer/ && \
     cd /tmp/composer && \
     curl -sS https://getcomposer.org/installer | php && \
@@ -29,15 +31,15 @@ RUN \
     sed -i -e 's/fastcgi_param  SERVER_PORT        $server_port;/fastcgi_param  SERVER_PORT        $http_x_forwarded_port;/g' /etc/nginx/fastcgi.conf && \
     sed -i -e 's/fastcgi_param  SERVER_PORT        $server_port;/fastcgi_param  SERVER_PORT        $http_x_forwarded_port;/g' /etc/nginx/fastcgi_params && \
     sed -i -e '/sendfile on;/a\        fastcgi_read_timeout 300\;' /etc/nginx/nginx.conf && \
-
     mkdir -p /usr/src/tmp/ioncube && \
     curl -fSL "http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64_5.1.2.tar.gz" -o /usr/src/tmp/ioncube_loaders_lin_x86-64_5.1.2.tar.gz && \
     tar xfz /usr/src/tmp/ioncube_loaders_lin_x86-64_5.1.2.tar.gz -C /usr/src/tmp/ioncube && \
     cp /usr/src/tmp/ioncube/ioncube/ioncube_loader_lin_5.6.so /usr/lib/php/20131226/ && \
     rm -rf /usr/src/tmp/ && \
-
     mkdir --mode 777 /var/run/php && \
     chmod 755 /hooks /var/www && \
     chmod -R 777 /var/www/html /var/log && \
     sed -i -e 's/index index.html/index index.php index.html/g' /etc/nginx/sites-enabled/site.conf && \
-    chmod 666 /etc/nginx/sites-enabled/site.conf /etc/passwd /etc/group
+    chmod 666 /etc/nginx/sites-enabled/site.conf /etc/passwd /etc/group && \
+    nginx -t && \
+    chmod -R 777 /run/
