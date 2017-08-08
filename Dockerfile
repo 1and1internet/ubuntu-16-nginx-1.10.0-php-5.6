@@ -44,4 +44,4 @@ RUN \
     chmod 666 /etc/nginx/sites-enabled/site.conf /etc/passwd /etc/group && \
     nginx -t && \
     mkdir -p /run /var/lib/nginx /var/lib/php && \
-    chmod -R 777 /run /var/lib/nginx /var/lib/php
+    chmod -R 777 /run /var/lib/nginx /var/lib/php /etc/php/5.6/fpm/php.ini
